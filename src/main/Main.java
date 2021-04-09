@@ -17,8 +17,10 @@ public class Main {
         Restaurant restaurant = new Restaurant("Pizza Ibiza","adresa 1");
         Product product1 = new Product("Margherita",14.99);
         Product product2 = new Product("Carnivora",23.0);
+        Product product3 = new Product("Calzone",21.0);
         restaurant.addProduct(product1);
         restaurant.addProduct(product2);
+        restaurant.addProduct(product3);
         app.addRestaurant(restaurant);
         LoginService logInService = new LoginService();
         logInService.Main(app);

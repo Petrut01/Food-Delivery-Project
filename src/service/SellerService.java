@@ -27,7 +27,7 @@ public class SellerService {
                 }
                 System.out.println("Total income: " + total);
             } else if (option == 2) {
-                app.getDrivers().remove(seller);
+                app.getSellers().remove(seller);
                 app.getUsers().remove(seller);
             } else {
                 System.out.println("Invalid option");
