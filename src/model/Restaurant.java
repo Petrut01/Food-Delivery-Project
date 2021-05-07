@@ -4,15 +4,29 @@ import java.util.ArrayList;
 import java.util.UUID;
 
 public class Restaurant {
-    private final String id = UUID.randomUUID().toString();
+    private String id;
     private String name;
     private String address;
     private ArrayList<Product> menu;
 
     public Restaurant(String name, String address) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         menu = new ArrayList<Product>();
+    }
+
+    public Restaurant(String id, String name, String address) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        menu = new ArrayList<Product>();
+    }
+    public Restaurant(String id, String name, String address, ArrayList<Product> menu) {
+        this.id = id;
+        this.name = name;
+        this.address = address;
+        this.menu = menu;
     }
 
     public Restaurant() {

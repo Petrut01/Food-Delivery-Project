@@ -22,6 +22,13 @@ public class Driver extends User{
         this.deliveries = new ArrayList<Order>();
     }
 
+    public Driver(String[] values) {
+        super(values[0], values[1], values[2], values[3], values[4], values[5]);
+        this.car = new Car(values[6] , values[7], values[8]);
+        this.salary = Float.parseFloat(values[9]);
+        this.deliveries = new ArrayList<Order>();
+    }
+
     public Car getCar() {
         return car;
     }
@@ -56,4 +63,5 @@ public class Driver extends User{
                 ", phonenumber='" + phonenumber + '\'' +
                 '}';
     }
+
 }

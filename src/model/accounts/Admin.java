@@ -7,6 +7,11 @@ public class Admin extends User{
     public Admin() {
     }
 
+    public Admin(String id, String fullname, String email, String password, String phonenumber, String cardnumber) {
+        super(id, fullname, email, password, phonenumber, cardnumber);
+        this.client_admin = new Client(fullname, email, password, phonenumber, cardnumber);
+    }
+
     public Admin(String fullname, String email, String password, String phonenumber, String cardnumber) {
         super(fullname, email, password, phonenumber, cardnumber);
         this.client_admin = new Client(fullname, email, password, phonenumber, cardnumber);

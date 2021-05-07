@@ -6,8 +6,13 @@ import model.accounts.Admin;
 import java.util.Scanner;
 
 public class AdminService {
+
+    private final Scanner scanner = new Scanner(System.in);
+    private final AuditService audit = AuditService.getInstance();
+
     public void Main(App app, Admin admin) {
-        Scanner scanner = new Scanner(System.in);
+
+        audit.write("Login - "+admin.getFullname());
         System.out.println("\nLogged in as Admin");
         System.out.println(admin);
         for(;;){
@@ -26,7 +31,7 @@ public class AdminService {
             }else{
                 for(;;){
                     System.out.println("Select an option");
-                    System.out.println("1. Display all users");
+                    System.out.println("1. Display all clients");
                     System.out.println("2. Display all drivers");
                     System.out.println("3. Display all sellers");
                     System.out.println("4. Display all restaurants");
@@ -39,26 +44,31 @@ public class AdminService {
                     }
                     switch (option2){
                         case 1:
-                            System.out.println(app.getUsers());
+                            audit.write("Show Clients - "+admin.getFullname());
+                            System.out.println(app.getClients());
                             scanner.nextLine();
                             scanner.nextLine();
                             break;
                         case 2:
+                            audit.write("Show Drivers - "+admin.getFullname());
                             System.out.println(app.getDrivers());
                             scanner.nextLine();
                             scanner.nextLine();
                             break;
                         case 3:
+                            audit.write("Show Sellers - "+admin.getFullname());
                             System.out.println(app.getSellers());
                             scanner.nextLine();
                             scanner.nextLine();
                             break;
                         case 4:
+                            audit.write("Show Restaurants - "+admin.getFullname());
                             System.out.println(app.getRestaurants());
                             scanner.nextLine();
                             scanner.nextLine();
                             break;
                         case 5:
+                            audit.write("Show Orders - "+admin.getFullname());
                             System.out.println(app.getOrders());
                             scanner.nextLine();
                             scanner.nextLine();

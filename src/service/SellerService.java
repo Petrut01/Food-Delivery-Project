@@ -2,14 +2,18 @@ package service;
 
 import model.App;
 import model.Order;
-import model.accounts.Driver;
 import model.accounts.Seller;
 
 import java.util.Scanner;
 
 public class SellerService {
+
+    private final AuditService audit = AuditService.getInstance();
+    private final Scanner scanner = new Scanner(System.in);
+
     public void Main(App app, Seller seller) {
-        Scanner scanner = new Scanner(System.in);
+
+        audit.write("Login - " + seller.getFullname());
         System.out.println("\nLogged in as Seller");
         System.out.println(seller);
         for (; ; ) {
@@ -25,8 +29,10 @@ public class SellerService {
                 for (Order s : seller.getSales()) {
                     total += s.getTotalPrice();
                 }
+                audit.write("Show Income - " + seller.getFullname());
                 System.out.println("Total income: " + total);
             } else if (option == 2) {
+                audit.write("Delete Account - " + seller.getFullname());
                 app.getSellers().remove(seller);
                 app.getUsers().remove(seller);
             } else {

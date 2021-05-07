@@ -13,6 +13,10 @@ public class Ingredient {
         this.expirydate = expirydate;
     }
 
+    public Ingredient(String name) {
+        this.name = name;
+    }
+
     public String getId() {
         return id;
     }
@@ -35,9 +39,6 @@ public class Ingredient {
 
     @Override
     public String toString() {
-        return "Ingredient{" +
-                "name='" + name + '\'' +
-                ", expirydate=" + expirydate +
-                '}';
+        return name;
     }
 }

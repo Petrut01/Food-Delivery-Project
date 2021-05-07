@@ -1,9 +1,7 @@
 package model;
 
-import java.util.UUID;
 
 public class Car {
-    private final String id = UUID.randomUUID().toString();
     private String brand;
     private String model;
     private String numberplate;
@@ -17,10 +15,6 @@ public class Car {
         this.numberplate = numberplate;
     }
 
-
-    public String getId() {
-        return id;
-    }
 
     public String getBrand() {
         return brand;
@@ -54,4 +48,5 @@ public class Car {
                 ", numberplate='" + numberplate + '\'' +
                 '}';
     }
+
 }

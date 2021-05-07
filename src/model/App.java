@@ -100,6 +100,7 @@ public class App {
     public void addSeller(Seller seller) {
         this.sellers.add(seller);
         this.users.add(seller);
+        this.restaurants.add(seller.getRestaurant());
     }
 
     public void addAdmin(Admin admin) {

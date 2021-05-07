@@ -5,13 +5,18 @@ import model.Order;
 import model.Product;
 import model.Restaurant;
 import model.accounts.Client;
-import model.accounts.User;
+
 
 import java.util.Scanner;
 
 public class ClientService {
+
+    private final AuditService audit = AuditService.getInstance();
+    private final Scanner scanner = new Scanner(System.in);
+
     public void Main(App app, Client client) {
-        Scanner scanner = new Scanner(System.in);
+
+        audit.write("Login - "+client.getFullname());
         System.out.println("\nLogged in as client");
         System.out.println(client);
         for (; ; ) {
@@ -57,7 +62,7 @@ public class ClientService {
             System.out.println("2. View restaurants");
             System.out.println("3. Finish order");
             System.out.println("0. Cancel Order");
-            int option = scanner.nextInt();
+            int option = Integer.parseInt(scanner.nextLine());
             if (option == 0) {
                 return;
             }
@@ -69,11 +74,10 @@ public class ClientService {
                 for (Restaurant res : app.getRestaurants()) {
                     System.out.println(res.getName());
                 }
-                scanner.nextLine();
 
             } else if (option == 1) {
                 System.out.println("Enter restaurant name");
-                String sc = scanner.next();
+                String sc = scanner.nextLine();
                 Restaurant restaurant = null;
                 for (Restaurant res : app.getRestaurants()) {
                     if (res.getName().toLowerCase().equals(sc.toLowerCase())) {
@@ -90,18 +94,18 @@ public class ClientService {
                         System.out.println("2. Add product to your order");
                         System.out.println("3. Back");
                         System.out.println("0. Cancel order");
-                        int addoption = scanner.nextInt();
-                        if (addoption == 0) {
+                        int addOption = Integer.parseInt(scanner.nextLine());
+                        if (addOption == 0) {
                             return;
-                        } else if (addoption == 1) {
+                        } else if (addOption == 1) {
                             System.out.println(restaurant.getMenu());
-                        } else if (addoption == 3) {
+                        } else if (addOption == 3) {
                             break;
-                        } else if (addoption != 2) {
+                        } else if (addOption != 2) {
                             System.out.println("Invalid option");
                         } else {
                             System.out.println("Enter product name");
-                            String name = scanner.next();
+                            String name = scanner.nextLine();
                             Product product = null;
                             for (Product p : restaurant.getMenu()) {
                                 if (p.getName().toLowerCase().equals(name.toLowerCase())){
@@ -112,7 +116,7 @@ public class ClientService {
                                 System.out.println("This product doesn't exist");
                             } else {
                                 System.out.println("Enter quantity");
-                                int quantity = scanner.nextInt();
+                                int quantity = Integer.parseInt(scanner.nextLine());
                                 order.addProduct(product, quantity);
                             }
                         }
@@ -120,16 +124,18 @@ public class ClientService {
                 }
             }
         }
+        audit.write("Create order - "+client.getFullname());
         client.addOrder(order);
         app.addOrder(order);
     }
 
     public void displayOrders(App app, Client client, Boolean active) {
+        audit.write("Display Orders- "+client.getFullname());
         int count = 0;
         System.out.println(client.getOrders());
         for (Order order : client.getOrders()) {
             if (!active || order.getStatus().equals("created")) {
-                System.out.println(order);
+                //System.out.println(order);
                 count++;
             }
         }

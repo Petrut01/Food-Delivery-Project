@@ -8,8 +8,11 @@ import model.accounts.*;
 import java.util.Scanner;
 
 public class LoginService {
+
+    private final AuditService audit = AuditService.getInstance();
+    private final Scanner scanner = new Scanner(System.in);
+
     public void Main(App app) {
-        Scanner scanner = new Scanner(System.in);
         int option;
         for (; ; ) {
             System.out.println("Select an option");
@@ -43,6 +46,7 @@ public class LoginService {
 
                         } else if (user instanceof Admin) {
 //                            System.out.println("Logged in as Admin");
+
                             AdminService adminService = new AdminService();
                             adminService.Main(app, (Admin)user);
                             break;
@@ -110,6 +114,7 @@ public class LoginService {
             case 1: //client
                 Client client = new Client(fullname, email, password, phonenumber, cardnumber, address);
                 app.addClient(client);
+                audit.write("SignUp - "+client.getFullname());
                 break;
             case 2: //driver
                 System.out.println("Enter your car information");
@@ -122,6 +127,7 @@ public class LoginService {
                 Car car = new Car(brand, model, numberplate);
                 Driver driver = new Driver(fullname, email, password, phonenumber, cardnumber, car);
                 app.addDriver(driver);
+                audit.write("SignUp - "+driver.getFullname());
                 break;
             case 3: //seller
                 System.out.println("Enter your restaurant information");
@@ -132,6 +138,7 @@ public class LoginService {
                 Restaurant restaurant = new Restaurant(name,raddress);
                 Seller seller = new Seller(fullname, email, password, phonenumber, cardnumber, restaurant);
                 app.addSeller(seller);
+                audit.write("SignUp - "+seller.getFullname());
                 break;
         }
     }

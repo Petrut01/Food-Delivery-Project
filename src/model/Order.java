@@ -38,6 +38,7 @@ public class Order {
         for (Pair<Product,Integer> p : products){
             prod+= "("+p.getFirst().getName() + " " + p.getSecond() + "),";
         }
+        prod = prod.substring(0, prod.length() - 1);
         prod += "]";
         if (driver == null)
             return  "Order{" +
@@ -92,6 +93,7 @@ public class Order {
     public ArrayList<Pair<Product, Integer>> getProducts() {
         return products;
     }
+
     public void addProduct(Product product,int quantity){
         Integer q = quantity;
         Pair<Product,Integer> p = new Pair<>(product,q);

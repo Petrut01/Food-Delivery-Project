@@ -13,13 +13,22 @@ public class Client extends User{
         super(fullname, email, password, phonenumber, cardnumber);
         this.orders = new ArrayList<Order>();
     }
+
     public Client(String fullname, String email, String password, String phonenumber, String cardnumber, String address) {
         super(fullname, email, password, phonenumber, cardnumber);
         this.address = address;
         this.orders = new ArrayList<Order>();
     }
+    public Client(String id, String fullname, String email, String password, String phonenumber, String cardnumber, String address) {
+        super(id, fullname, email, password, phonenumber, cardnumber);
+        this.address = address;
+        this.orders = new ArrayList<Order>();
+    }
 
-    public Client() {
+    public Client(String[] values) {
+        super(values[0], values[1], values[2], values[3], values[4], values[5]);
+        this.address = values[6];
+        this.orders = new ArrayList<>();
     }
 
     public String getAddress() {
