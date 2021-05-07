@@ -11,6 +11,7 @@ public class LoginService {
 
     private final AuditService audit = AuditService.getInstance();
     private final Scanner scanner = new Scanner(System.in);
+    private final CSVWriter csvWriter = CSVWriter.getInstance();
 
     public void Main(App app) {
         int option;
@@ -114,6 +115,7 @@ public class LoginService {
             case 1: //client
                 Client client = new Client(fullname, email, password, phonenumber, cardnumber, address);
                 app.addClient(client);
+                csvWriter.write(client);
                 audit.write("SignUp - "+client.getFullname());
                 break;
             case 2: //driver
@@ -127,6 +129,7 @@ public class LoginService {
                 Car car = new Car(brand, model, numberplate);
                 Driver driver = new Driver(fullname, email, password, phonenumber, cardnumber, car);
                 app.addDriver(driver);
+                csvWriter.write(driver);
                 audit.write("SignUp - "+driver.getFullname());
                 break;
             case 3: //seller
@@ -138,6 +141,7 @@ public class LoginService {
                 Restaurant restaurant = new Restaurant(name,raddress);
                 Seller seller = new Seller(fullname, email, password, phonenumber, cardnumber, restaurant);
                 app.addSeller(seller);
+                csvWriter.write(seller);
                 audit.write("SignUp - "+seller.getFullname());
                 break;
         }

@@ -135,7 +135,6 @@ public class ClientService {
         System.out.println(client.getOrders());
         for (Order order : client.getOrders()) {
             if (!active || order.getStatus().equals("created")) {
-                //System.out.println(order);
                 count++;
             }
         }

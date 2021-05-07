@@ -13,11 +13,11 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Client client = new Client("Albu Dragos","albu@yahoo.com","password","0712345678","1234567890123456", "Ilie Balaci nr. 8");
+        //Client client = new Client("Albu Dragos","albu@yahoo.com","password","0712345678","1234567890123456", "Ilie Balaci nr. 8");
         Admin admin = new Admin("Ionescu Andrei", "ionescu@gmail.com", "123456", "0722123456", "4324343244423434");
         App app = new App();
         app.addAdmin(admin);
-        app.addClient(client);
+        //app.addClient(client);
         Restaurant restaurant = new Restaurant("Pizza Ibiza","adresa 1");
         Product product1 = new Product(restaurant.getId(), "Margherita",14.99);
         Product product2 = new Product(restaurant.getId(), "Carnivora",23.0);
@@ -26,7 +26,7 @@ public class Main {
         app.addRestaurant(restaurant);
         LoginService logInService = new LoginService();
         CSVWriter csvWriter = CSVWriter.getInstance();
-        csvWriter.write(client);
+        //csvWriter.write(client);
         csvWriter.write(product1);
         csvWriter.write(product2);
 

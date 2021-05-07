@@ -28,7 +28,7 @@ public class Seller extends User{
     public Seller(String[] values){
         super(values[0], values[1], values[2], values[3], values[4], values[5]);
         this.restaurant = new Restaurant(values[6], values[7], values[8]);
-
+        this.sales = new ArrayList<Order>();
     }
 
     @Override

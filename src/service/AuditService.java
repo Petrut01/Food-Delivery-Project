@@ -25,9 +25,7 @@ public class AuditService {
 
         }
         catch (Exception e){
-
         }
-
     }
 
     public static AuditService getInstance() {
@@ -39,8 +37,7 @@ public class AuditService {
 
     public void write(String actionName){
         String timeStamp = new SimpleDateFormat("dd.MM.yyyy-HH:mm:ss").format(new Date());
-        String output = actionName + "," +
-                timeStamp;
+        String output = actionName + "," + timeStamp;
         try{
             bufferedWriter.write(output + "\n");
             bufferedWriter.flush();

@@ -97,15 +97,17 @@ public class CSVWriter extends AuditService {
                 menu = menu.substring(0, menu.length() - 1);
             }
             String output = seller.getID() + "," +
-                    seller.getFullname() + "," +
-                    seller.getEmail() + "," +
-                    seller.getPassword() + "," +
-                    seller.getPhonenumber() + "," +
-                    seller.getCardnumber() + "," +
-                    seller.getRestaurant().getId() + "," +
-                    seller.getRestaurant().getName() + "," +
-                    seller.getRestaurant().getAddress() + "," +
-                    menu;
+                        seller.getFullname() + "," +
+                        seller.getEmail() + "," +
+                        seller.getPassword() + "," +
+                        seller.getPhonenumber() + "," +
+                        seller.getCardnumber() + "," +
+                        seller.getRestaurant().getId() + "," +
+                        seller.getRestaurant().getName() + "," +
+                        seller.getRestaurant().getAddress();
+            if(menu.length()>0) {
+                output += "," + menu;
+            }
 
             bufferedWriter.write(output + "\n");
             bufferedWriter.flush();
@@ -121,7 +123,7 @@ public class CSVWriter extends AuditService {
         try {
             BufferedWriter bufferedWriter = Files.newBufferedWriter(paths.get("Products"), StandardOpenOption.APPEND);
             String ingredients = "";
-            if(product.getIngredients() != null){
+            if(product.getIngredients().size() > 0){
                 for (Ingredient ingredient : product.getIngredients()) {
                     ingredients += ingredient.toString() + ",";
                 }
