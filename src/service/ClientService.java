@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class ClientService {
 
     private final AuditService audit = AuditService.getInstance();
+    private final ClientsDatabase database = ClientsDatabase.getDatabaseInstance1();
     private final Scanner scanner = new Scanner(System.in);
 
     public void Main(App app, Client client) {

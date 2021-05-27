@@ -4,14 +4,16 @@ import model.App;
 import model.Order;
 import model.accounts.Seller;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class SellerService {
 
     private final AuditService audit = AuditService.getInstance();
+    private final SellersDatabase database = SellersDatabase.getDatabaseInstance3();
     private final Scanner scanner = new Scanner(System.in);
 
-    public void Main(App app, Seller seller) {
+    public void Main(App app, Seller seller) throws SQLException {
 
         audit.write("Login - " + seller.getFullname());
         System.out.println("\nLogged in as Seller");
@@ -33,6 +35,7 @@ public class SellerService {
                 System.out.println("Total income: " + total);
             } else if (option == 2) {
                 audit.write("Delete Account - " + seller.getFullname());
+                database.deleteSeller(seller.getID());
                 app.getSellers().remove(seller);
                 app.getUsers().remove(seller);
             } else {

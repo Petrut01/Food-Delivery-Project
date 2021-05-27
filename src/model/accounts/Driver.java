@@ -11,8 +11,16 @@ public class Driver extends User{
     private ArrayList<Order> deliveries;
 
 
-    public Driver(String fullname, String email, String password, String phonenumber, String cardnumber) {
+    public Driver(String fullname, String email, String password, String phonenumber, String cardnumber, Car car, float salary) {
         super(fullname, email, password, phonenumber, cardnumber);
+        this.car = car;
+        this.salary = salary;
+        this.deliveries = new ArrayList<Order>();
+    }
+    public Driver(String id, String fullname, String email, String password, String phonenumber, String cardnumber, Car car, float salary) {
+        super(id, fullname, email, password, phonenumber, cardnumber);
+        this.car = car;
+        this.salary = salary;
         this.deliveries = new ArrayList<Order>();
     }
 

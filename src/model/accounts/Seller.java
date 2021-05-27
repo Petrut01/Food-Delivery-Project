@@ -15,8 +15,9 @@ public class Seller extends User{
         this.sales = new ArrayList<Order>();
     }
 
-    public Seller(String fullname, String email, String password, String phonenumber, String cardnumber) {
-        super(fullname, email, password, phonenumber, cardnumber);
+    public Seller(String id, String fullname, String email, String password, String phonenumber, String cardnumber, Restaurant restaurant) {
+        super(id, fullname, email, password, phonenumber, cardnumber);
+        this.restaurant = restaurant;
         this.sales = new ArrayList<Order>();
     }
     public Seller(String fullname, String email, String password, String phonenumber, String cardnumber, Restaurant restaurant) {

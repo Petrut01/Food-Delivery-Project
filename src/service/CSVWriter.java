@@ -131,14 +131,16 @@ public class CSVWriter extends AuditService {
             }
 
             if (ingredients.length()>0){
-                String output = product.getRestaurantId() + "," +
+                String output = product.getProductId() + "," +
+                        product.getRestaurantId() + "," +
                         product.getName() + "," +
                         product.getPrice() + "," +
                         ingredients;
                 bufferedWriter.write(output + "\n");
             }
             else {
-                String output = product.getRestaurantId() + "," +
+                String output = product.getProductId() + "," +
+                        product.getRestaurantId() + "," +
                         product.getName() + "," +
                         product.getPrice();
                 bufferedWriter.write(output + "\n");

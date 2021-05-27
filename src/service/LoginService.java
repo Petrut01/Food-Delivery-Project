@@ -5,15 +5,19 @@ import model.Car;
 import model.Restaurant;
 import model.accounts.*;
 
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class LoginService {
 
     private final AuditService audit = AuditService.getInstance();
     private final Scanner scanner = new Scanner(System.in);
+    private final SellersDatabase sellersDatabase = SellersDatabase.getDatabaseInstance3();
+    private final DriversDatabase driversDatabase = DriversDatabase.getDatabaseInstance2();
+    private final ClientsDatabase clientsDatabase = ClientsDatabase.getDatabaseInstance1();
     private final CSVWriter csvWriter = CSVWriter.getInstance();
 
-    public void Main(App app) {
+    public void Main(App app) throws SQLException {
         int option;
         for (; ; ) {
             System.out.println("Select an option");
@@ -96,10 +100,10 @@ public class LoginService {
         return null;
     }
 
-    private void signup(int type, App app) {
+    private void signup(int type, App app) throws SQLException {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Full Name");
-        String fullname = scanner.next();
+        String fullname = scanner.nextLine();
         System.out.println("Password");
         String password = scanner.next();
         System.out.println("Email");
@@ -113,7 +117,9 @@ public class LoginService {
 
         switch (type) {
             case 1: //client
-                Client client = new Client(fullname, email, password, phonenumber, cardnumber, address);
+                //Client client = new Client(fullname, email, password, phonenumber, cardnumber, address);
+                String[] values = new String[]{fullname, email, password, phonenumber, cardnumber, address};
+                Client client = clientsDatabase.createClient(values);
                 app.addClient(client);
                 csvWriter.write(client);
                 audit.write("SignUp - "+client.getFullname());
@@ -125,9 +131,13 @@ public class LoginService {
                 System.out.println("Model");
                 String model = scanner.next();
                 System.out.println("NumberPlate");
-                String numberplate = scanner.next();
-                Car car = new Car(brand, model, numberplate);
-                Driver driver = new Driver(fullname, email, password, phonenumber, cardnumber, car);
+                String numberPlate = scanner.next();
+                System.out.println("Salary");
+                String salary = scanner.next();
+                //Car car = new Car(brand, model, numberplate);
+                //Driver driver = new Driver(fullname, email, password, phonenumber, cardnumber, car);
+                String[] valuesDriver = new String[]{fullname, email, password, phonenumber, cardnumber, brand, model, numberPlate,salary};
+                Driver driver = driversDatabase.createDriver(valuesDriver);
                 app.addDriver(driver);
                 csvWriter.write(driver);
                 audit.write("SignUp - "+driver.getFullname());
@@ -138,8 +148,10 @@ public class LoginService {
                 String name = scanner.next();
                 System.out.println("Address");
                 String raddress = scanner.next();
-                Restaurant restaurant = new Restaurant(name,raddress);
-                Seller seller = new Seller(fullname, email, password, phonenumber, cardnumber, restaurant);
+                //Restaurant restaurant = new Restaurant(name,raddress);
+                //Seller seller = new Seller(fullname, email, password, phonenumber, cardnumber, restaurant);
+                String[] valuesSeller = new String[]{fullname, email, password, phonenumber, cardnumber, name, raddress};
+                Seller seller = sellersDatabase.createSeller(valuesSeller);
                 app.addSeller(seller);
                 csvWriter.write(seller);
                 audit.write("SignUp - "+seller.getFullname());
