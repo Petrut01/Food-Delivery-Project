@@ -110,13 +110,13 @@ public class LoginService {
         String email = scanner.next();
         System.out.println("Phone number");
         String phonenumber = scanner.next();
-        System.out.println("Address");
-        String address = scanner.next();
         System.out.println("Card Number");
         String cardnumber = scanner.next();
 
         switch (type) {
             case 1: //client
+                System.out.println("Address");
+                String address = scanner.nextLine();
                 //Client client = new Client(fullname, email, password, phonenumber, cardnumber, address);
                 String[] values = new String[]{fullname, email, password, phonenumber, cardnumber, address};
                 Client client = clientsDatabase.createClient(values);

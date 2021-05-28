@@ -2,15 +2,23 @@ package service;
 
 import model.App;
 import model.accounts.Admin;
+import model.accounts.Client;
+import model.accounts.Driver;
+import model.accounts.Seller;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class AdminService {
 
     private final Scanner scanner = new Scanner(System.in);
     private final AuditService audit = AuditService.getInstance();
+    private final SellersDatabase sellersDatabase = SellersDatabase.getDatabaseInstance3();
+    private final DriversDatabase driversDatabase = DriversDatabase.getDatabaseInstance2();
+    private final ClientsDatabase clientsDatabase = ClientsDatabase.getDatabaseInstance1();
 
-    public void Main(App app, Admin admin) {
+    public void Main(App app, Admin admin) throws SQLException {
 
         audit.write("Login - "+admin.getFullname());
         System.out.println("\nLogged in as Admin");
@@ -45,19 +53,25 @@ public class AdminService {
                     switch (option2){
                         case 1:
                             audit.write("Show Clients - "+admin.getFullname());
-                            System.out.println(app.getClients());
+                            //System.out.println(app.getClients());
+                            ArrayList<Client> clients = clientsDatabase.readClients();
+                            System.out.println(clients);
                             scanner.nextLine();
                             scanner.nextLine();
                             break;
                         case 2:
                             audit.write("Show Drivers - "+admin.getFullname());
-                            System.out.println(app.getDrivers());
+                            //System.out.println(app.getDrivers());
+                            ArrayList<Driver> drivers = driversDatabase.readDrivers();
+                            System.out.println(drivers);
                             scanner.nextLine();
                             scanner.nextLine();
                             break;
                         case 3:
                             audit.write("Show Sellers - "+admin.getFullname());
-                            System.out.println(app.getSellers());
+                            //System.out.println(app.getSellers());
+                            ArrayList<Seller> sellers = sellersDatabase.readSellers();
+                            System.out.println(sellers);
                             scanner.nextLine();
                             scanner.nextLine();
                             break;

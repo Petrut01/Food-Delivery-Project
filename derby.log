@@ -1,10 +1,10 @@
 ----------------------------------------------------------------
-Thu May 27 22:45:38 UTC 2021:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.1.3 - (1853019): instance a816c00e-0179-b001-292e-0000076656e8 
-on database directory C:\Users\ASUS\IdeaProjects\Food-Delivery-Project\foodDeliveryDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@7aec35a 
-Loaded from file:/C:/Users/ASUS/AppData/Roaming/JetBrains/IntelliJIdea2021.1/jdbc-drivers/Apache%20Derby/10.15.1.3/derby-10.15.1.3.jar
-java.vendor=JetBrains s.r.o.
-java.runtime.version=11.0.10+9-b1341.41
+Fri May 28 11:50:13 EEST 2021:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.15.2.0 - (1873585): instance a816c00e-0179-b22a-b22c-000007333750 
+on database directory C:\Users\ASUS\IdeaProjects\Food-Delivery-Project\foodDeliveryDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@3764951d 
+Loaded from file:/C:/Users/ASUS/IdeaProjects/Food-Delivery-Project/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=15.0.2+7-27
 user.dir=C:\Users\ASUS\IdeaProjects\Food-Delivery-Project
 os.name=Windows 10
 os.arch=amd64
